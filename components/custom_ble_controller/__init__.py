@@ -17,4 +17,6 @@ def to_code(config):
     yield cg.register_component(var, config)
     pin = yield cg.gpio_pin_expression(config[CONF_PIN])
     cg.add(var.set_pin(pin))
+    cg.add(var.turn_on())  # C++ tarafında turn_on işlevini ekler
+    cg.add(var.turn_off()) 
 
