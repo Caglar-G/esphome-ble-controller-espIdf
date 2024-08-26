@@ -1,4 +1,4 @@
-#include "esp32_ble_controller_espIdf.h"
+#include "custom_ble_controller.h"
 #include "esphome/core/log.h"
 
 namespace esphome {
