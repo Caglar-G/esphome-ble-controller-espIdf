@@ -2,27 +2,27 @@
 #include "esphome/core/log.h"
 
 namespace esphome {
-namespace simple_led {
+namespace custom_ble_controller {
 
-static const char *TAG = "simple_led";
+static const char *TAG = "custom_ble_controller";
 
-void SimpleLEDComponent::setup() {
+void CustomBLEController::setup() {
   ESP_LOGCONFIG(TAG, "Setting up Simple LED Component...");
   this->pin_->setup();
   this->pin_->digital_write(false);  // LED'i başlangıçta kapalı yap
 }
 
-void SimpleLEDComponent::loop() {
+void CustomBLEController::loop() {
   // Buraya istenirse LED kontrol kodları eklenebilir
 }
 
-void SimpleLEDComponent::turn_on() {
+void CustomBLEController::turn_on() {
   this->led_state_ = true;
   this->pin_->digital_write(true);
   ESP_LOGD(TAG, "LED turned on");
 }
 
-void SimpleLEDComponent::turn_off() {
+void CustomBLEController::turn_off() {
   this->led_state_ = false;
   this->pin_->digital_write(false);
   ESP_LOGD(TAG, "LED turned off");

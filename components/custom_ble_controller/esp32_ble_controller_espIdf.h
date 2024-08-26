@@ -4,9 +4,9 @@
 #include "esphome/core/gpio.h"
 
 namespace esphome {
-namespace simple_led {
+namespace custom_ble_controller {
 
-class SimpleLEDComponent : public Component {
+class CustomBLEController : public Component {
  public:
   void setup() override;
   void loop() override;
