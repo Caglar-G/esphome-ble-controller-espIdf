@@ -17,3 +17,4 @@ def to_code(config):
     yield cg.register_component(var, config)
     pin = yield cg.gpio_pin_expression(config[CONF_PIN])
     cg.add(var.set_pin(pin))
+    
