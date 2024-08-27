@@ -20,7 +20,6 @@
 
 #ifdef USE_ESP32
 
-#include <improv.h>
 
 namespace esphome {
 namespace esp32_improv {
