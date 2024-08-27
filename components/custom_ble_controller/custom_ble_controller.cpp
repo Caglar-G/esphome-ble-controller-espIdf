@@ -37,7 +37,7 @@ void CustomBleController::setup_characteristics() {
               data_str += " ";  // Elemanlar arasına boşluk ekle
           }
       }
-      id(deviceId).set(data_str);
+ 
       ESP_LOGD(TAG, "Data: %s", data_str.c_str());
 
       //this->incoming_data_.insert(this->incoming_data_.end(), data.begin(), data.end());
@@ -61,6 +61,8 @@ void CustomBleController::loop() {
     global_ble_server->create_service(ESPBTUUID::from_raw("12345678-1234-5678-1234-56789abcdef0"));
     this->service_ = global_ble_server->get_service(ESPBTUUID::from_raw("12345678-1234-5678-1234-56789abcdef0"));
     this->setup_characteristics();
+
+      id(deviceId).set("tset");
     /*
     this->service_->start();
     esp32_ble::global_ble->advertising_start();*/
