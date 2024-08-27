@@ -23,8 +23,27 @@ void ESP32ImprovComponent::setup() {
 }
 
 void ESP32ImprovComponent::setup_characteristics() {
- this->status_ = this->service_->create_characteristic(
-      ESPBTUUID::from_raw("87654321-4321-6789-4321-fedcba987654"), BLECharacteristic::PROPERTY_READ | BLECharacteristic::PROPERTY_NOTIFY);
+  this->status_ = this->service_->create_characteristic(
+      ESPBTUUID::from_raw("87654321-4321-6789-4321-fedcba987654"), BLECharacteristic::PROPERTY_WRITE);
+
+  this->status_->on_write([this](const std::vector<uint8_t> &data) {
+    if (!data.empty()) {
+      std::string data_str;
+      for (size_t i = 0; i < data.size(); ++i) {
+          char buf[4];
+          sprintf(buf, "%02X", data[i]);  // Her bir elemanı hexadecimal formatta yaz
+          data_str += buf;
+          if (i < data.size() - 1) {
+              data_str += " ";  // Elemanlar arasına boşluk ekle
+          }
+      }
+      ESP_LOGD(TAG, "Data: %s", data_str.c_str());
+
+      //this->incoming_data_.insert(this->incoming_data_.end(), data.begin(), data.end());
+      //ESP_LOGD(TAG, "Creating Improv service");
+    }
+  });
+
   BLEDescriptor *status_descriptor = new BLE2902();
   this->status_->add_descriptor(status_descriptor);
   ESP_LOGD(TAG, "Improv service setup_characteristics");
