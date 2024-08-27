@@ -27,6 +27,7 @@ void ESP32ImprovComponent::setup_characteristics() {
       ESPBTUUID::from_uint16(MODEL_UUID), BLECharacteristic::PROPERTY_READ | BLECharacteristic::PROPERTY_NOTIFY);
   BLEDescriptor *status_descriptor = new BLE2902();
   this->status_->add_descriptor(status_descriptor);
+  ESP_LOGD(TAG, "Improv service setup_characteristics");
 }
 
 void ESP32ImprovComponent::loop() {
