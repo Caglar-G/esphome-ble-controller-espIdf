@@ -25,8 +25,8 @@ CONFIG_SCHEMA = cv.Schema({
 
 async def to_code(config):
     var = cg.new_Pvariable(config[cv.GenerateID()],)
-    yield cg.register_component(var, config)
-    pin = yield cg.gpio_pin_expression(config[CONF_PIN])
+    await cg.register_component(var, config)
+    pin = await cg.gpio_pin_expression(config[CONF_PIN])
     cg.add(var.set_pin(pin))
 
     ble_server = await cg.get_variable(config[CONF_BLE_SERVER_ID])
