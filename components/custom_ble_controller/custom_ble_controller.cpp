@@ -41,8 +41,9 @@ void ESP32ImprovComponent::loop() {
     global_ble_server->create_service(ESPBTUUID::from_raw("12345678-1234-5678-1234-56789abcdef0"), true);
     this->service_ = global_ble_server->get_service(ESPBTUUID::from_raw("12345678-1234-5678-1234-56789abcdef0"));
     this->setup_characteristics();
+    /*
     this->service_->start();
-    esp32_ble::global_ble->advertising_start();
+    esp32_ble::global_ble->advertising_start();*/
   }
   else{
     if (this->service_->is_created()) {
