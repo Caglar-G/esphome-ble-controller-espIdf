@@ -10,6 +10,9 @@
 namespace esphome {
 namespace esp32_improv {
 
+static const uint16_t DEVICE_INFORMATION_SERVICE_UUID = 0x180B;
+static const uint16_t MODEL_UUID = 0x2A25;
+
 static const char *const TAG = "esp32_improv.component";
 static const char *const ESPHOME_MY_LINK = "https://my.home-assistant.io/redirect/config_flow_start?domain=esphome";
 
@@ -21,7 +24,7 @@ void ESP32ImprovComponent::setup() {
 
 void ESP32ImprovComponent::setup_characteristics() {
  this->status_ = this->service_->create_characteristic(
-      "ade15296-b658-4021-8c2a-94c1fb1d7d41", BLECharacteristic::PROPERTY_READ | BLECharacteristic::PROPERTY_NOTIFY);
+      ESPBTUUID::from_uint16(MODEL_UUID), BLECharacteristic::PROPERTY_READ | BLECharacteristic::PROPERTY_NOTIFY);
   BLEDescriptor *status_descriptor = new BLE2902();
   this->status_->add_descriptor(status_descriptor);
 }
@@ -34,8 +37,8 @@ void ESP32ImprovComponent::loop() {
   if (this->service_ == nullptr) {
     // Setup the service
     ESP_LOGD(TAG, "Creating Improv service");
-    global_ble_server->create_service(ESPBTUUID::from_raw("c2d76977-2c7f-4ff7-ba08-673b6248e184"), true);
-    this->service_ = global_ble_server->get_service(ESPBTUUID::from_raw("c2d76977-2c7f-4ff7-ba08-673b6248e184"));
+    global_ble_server->create_service(ESPBTUUID::from_uint16(DEVICE_INFORMATION_SERVICE_UUID), true);
+    this->service_ = global_ble_server->get_service(ESPBTUUID::from_uint16(DEVICE_INFORMATION_SERVICE_UUID));
     this->setup_characteristics();
   }
 }
