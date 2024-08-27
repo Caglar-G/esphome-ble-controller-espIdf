@@ -26,5 +26,7 @@ def turn_on_action(var):
     return cg.call(var.turn_on())
 
 @automation.register_action("custom_ble_controller.enable", BLEEnableAction, cv.Schema({}))
+async def ble_enable_to_code(config, action_id, template_arg, args):
+    return cg.new_Pvariable(action_id, template_arg)
 
 
