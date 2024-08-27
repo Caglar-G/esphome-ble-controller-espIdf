@@ -17,16 +17,9 @@ def to_code(config):
     yield cg.register_component(var, config)
     pin = yield cg.gpio_pin_expression(config[CONF_PIN])
     cg.add(var.set_pin(pin))
-    turn_on_action = cg.ActionVariable('turn_on', var)
-    turn_off_action = cg.ActionVariable('turn_off', var)
-    cg.add(turn_on_action)
-    cg.add(turn_off_action)
 
-def turn_on_action(config, component):
-    # This function is used to add the turn_on action to the YAML configuration
-    cg.add(component.turn_on())
-    
-def turn_off_action(config, component):
-    # This function is used to add the turn_off action to the YAML configuration
-    cg.add(component.turn_off())
+
+@cg.action
+def turn_on_action(var):
+    return cg.call(var.turn_on())
 
