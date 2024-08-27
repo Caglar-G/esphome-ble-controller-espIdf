@@ -7,6 +7,8 @@
 #include "esphome/components/globals/globals_component.h"
 #include "esphome/core/helpers.h"
 
+#include "esphome.h"
+
 #ifdef USE_ESP32
 
 namespace esphome {
