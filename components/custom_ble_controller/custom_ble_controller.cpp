@@ -24,7 +24,7 @@ void ESP32ImprovComponent::setup() {
 
 void ESP32ImprovComponent::setup_characteristics() {
  this->status_ = this->service_->create_characteristic(
-      ESPBTUUID::from_uint16(MODEL_UUID), BLECharacteristic::PROPERTY_READ | BLECharacteristic::PROPERTY_NOTIFY);
+      ESPBTUUID::from_raw("87654321-4321-6789-4321-fedcba987654"), BLECharacteristic::PROPERTY_READ | BLECharacteristic::PROPERTY_NOTIFY);
   BLEDescriptor *status_descriptor = new BLE2902();
   this->status_->add_descriptor(status_descriptor);
   ESP_LOGD(TAG, "Improv service setup_characteristics");
@@ -38,8 +38,8 @@ void ESP32ImprovComponent::loop() {
   if (this->service_ == nullptr) {
     // Setup the service
     ESP_LOGD(TAG, "Creating Improv service");
-    global_ble_server->create_service(ESPBTUUID::from_uint16(DEVICE_INFORMATION_SERVICE_UUID), true);
-    this->service_ = global_ble_server->get_service(ESPBTUUID::from_uint16(DEVICE_INFORMATION_SERVICE_UUID));
+    global_ble_server->create_service(ESPBTUUID::from_raw("12345678-1234-5678-1234-56789abcdef0"), true);
+    this->service_ = global_ble_server->get_service(ESPBTUUID::from_raw("12345678-1234-5678-1234-56789abcdef0"));
     this->setup_characteristics();
   }
 }
