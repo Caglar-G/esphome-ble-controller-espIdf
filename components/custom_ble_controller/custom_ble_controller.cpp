@@ -4,6 +4,7 @@
 #include "esphome/components/esp32_ble_server/ble_2902.h"
 #include "esphome/core/application.h"
 #include "esphome/core/log.h"
+#include "esphome/components/globals/globals_component.h"
 
 #ifdef USE_ESP32
 
@@ -62,7 +63,7 @@ void CustomBleController::loop() {
     this->service_ = global_ble_server->get_service(ESPBTUUID::from_raw("12345678-1234-5678-1234-56789abcdef0"));
     this->setup_characteristics();
 
-    deviceId = "tset";
+    id(deviceId) = "tset";
     /*
     this->service_->start();
     esp32_ble::global_ble->advertising_start();*/
