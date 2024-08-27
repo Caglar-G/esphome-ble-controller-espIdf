@@ -57,7 +57,7 @@ void CustomBleController::setup_characteristics() {
   ESP_LOGD(TAG, "Improv service setup_characteristics");
 }
 
-void CustomBleController::setDeviceId(globals::GlobalsComponent<std:string>  *color_value){
+void CustomBleController::setDeviceId(globals::GlobalsComponent<std::string>  *color_value){
 
 }
 
