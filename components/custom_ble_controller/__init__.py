@@ -23,7 +23,7 @@ CONFIG_SCHEMA = cv.Schema({
     cv.Required(CONF_PIN): pins.gpio_output_pin_schema,
 }).extend(cv.COMPONENT_SCHEMA)
 
-def to_code(config):
+async def to_code(config):
     var = cg.new_Pvariable(config[cv.GenerateID()],)
     yield cg.register_component(var, config)
     pin = yield cg.gpio_pin_expression(config[CONF_PIN])
