@@ -7,6 +7,10 @@ from esphome.const import CONF_PIN
 simple_led_ns = cg.esphome_ns.namespace('custom_ble_controller')
 SimpleLEDComponent = simple_led_ns.class_('CustomBLEController', cg.Component)
 
+
+BLEEnableAction = simple_led_ns.class_("BLEControllerSEND", automation.Action)
+
+
 CONFIG_SCHEMA = cv.Schema({
     cv.GenerateID(): cv.declare_id(SimpleLEDComponent),
     cv.Required(CONF_PIN): pins.gpio_output_pin_schema,
@@ -20,4 +24,7 @@ def to_code(config):
 
 def turn_on_action(var):
     return cg.call(var.turn_on())
+
+@automation.register_action("custom_ble_controller.enable", BLEEnableAction, cv.Schema({}))
+
 

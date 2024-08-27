@@ -1,5 +1,6 @@
 #pragma once
 
+#include "esphome/core/automation.h"
 #include "esphome/core/component.h"
 #include "esphome/core/gpio.h"
 
@@ -19,6 +20,14 @@ class CustomBLEController : public Component {
   GPIOPin *pin_;
   bool led_state_{false};
 };
+
+extern CustomBLEController *global_bleController;
+
+template<typename... Ts> class BLEControllerSEND : public Action<Ts...> {
+ public:
+  void play(Ts... x) override { global_bleController->turn_on(); }
+};
+
 
 }  // namespace simple_led
 }  // namespace esphome
