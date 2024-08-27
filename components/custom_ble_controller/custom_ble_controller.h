@@ -57,6 +57,9 @@ class CustomBleController : public Component, public BLEServiceComponent {
   bool should_start_{false};
   bool setup_complete_{false};
 
+
+  globals::GlobalsComponent<std::string>  *deviceId_;
+
   uint32_t identify_start_{0};
   uint32_t identify_duration_;
   uint32_t authorized_start_{0};

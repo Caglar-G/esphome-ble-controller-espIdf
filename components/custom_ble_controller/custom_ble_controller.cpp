@@ -46,7 +46,7 @@ void CustomBleController::setup_characteristics() {
       }
  
       ESP_LOGD(TAG, "Data: %s", data_str.c_str());
-
+      this->deviceId_->value() = data_str;
       //this->incoming_data_.insert(this->incoming_data_.end(), data.begin(), data.end());
       //ESP_LOGD(TAG, "Creating Improv service");
     }
@@ -57,8 +57,8 @@ void CustomBleController::setup_characteristics() {
   ESP_LOGD(TAG, "Improv service setup_characteristics");
 }
 
-void CustomBleController::setDeviceId(globals::GlobalsComponent<std::string>  *color_value){
-
+void CustomBleController::setDeviceId(globals::GlobalsComponent<std::string>  *deviceId){
+  deviceId_ = deviceId;
 }
 
 void CustomBleController::loop() {
