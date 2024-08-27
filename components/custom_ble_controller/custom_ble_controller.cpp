@@ -44,6 +44,23 @@ void ESP32ImprovComponent::loop() {
     this->service_->start();
     esp32_ble::global_ble->advertising_start();
   }
+  else{
+    if (this->service_->is_created()) {
+      ESP_LOGD(TAG, "Service is_created!");
+      if (this->service_->is_running()) {
+          ESP_LOGD(TAG, "Service is_running!");
+          /*
+          esp32_ble::global_ble->advertising_start();
+
+          this->set_state_(improv::STATE_AWAITING_AUTHORIZATION);
+          this->set_error_(improv::ERROR_NONE);
+          ESP_LOGD(TAG, "Service started!");*/
+        } else {
+          //this->service_->start();
+        }
+      }
+  }
+
 }
 
 void ESP32ImprovComponent::set_status_indicator_state_(bool state) {
