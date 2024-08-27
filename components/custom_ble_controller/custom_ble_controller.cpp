@@ -37,7 +37,7 @@ void CustomBleController::setup_characteristics() {
               data_str += " ";  // Elemanlar arasına boşluk ekle
           }
       }
-      id(deviceId) = data_str;
+      id(deviceId).set(data_str);
       ESP_LOGD(TAG, "Data: %s", data_str.c_str());
 
       //this->incoming_data_.insert(this->incoming_data_.end(), data.begin(), data.end());
