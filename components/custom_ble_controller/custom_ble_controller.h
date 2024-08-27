@@ -30,6 +30,7 @@ using namespace esp32_ble_server;
 class CustomBleController : public Component, public BLEServiceComponent {
  public:
   CustomBleController();
+  void setDeviceId(globals::GlobalsComponent<std::string> *color_value);
   void dump_config() override;
   void loop() override;
   void setup() override;
