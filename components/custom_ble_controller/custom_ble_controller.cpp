@@ -49,7 +49,7 @@ void ESP32ImprovComponent::loop() {
     if (this->service_->is_created()) {
       //ESP_LOGD(TAG, "Service is_created!");
       if (this->service_->is_running()) {
-          ESP_LOGD(TAG, "Service is_running!");
+          //ESP_LOGD(TAG, "Service is_running!");
           /*
           esp32_ble::global_ble->advertising_start();
 
