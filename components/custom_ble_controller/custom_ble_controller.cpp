@@ -1,4 +1,4 @@
-#include "esp32_improv_component.h"
+#include "custom_ble_controller.h"
 
 #include "esphome/components/esp32_ble/ble.h"
 #include "esphome/components/esp32_ble_server/ble_2902.h"
