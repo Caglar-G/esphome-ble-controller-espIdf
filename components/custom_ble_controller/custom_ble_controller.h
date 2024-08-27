@@ -7,7 +7,6 @@
 
 #include "esphome/components/esp32_ble_server/ble_characteristic.h"
 #include "esphome/components/esp32_ble_server/ble_server.h"
-#include "esphome/components/wifi/wifi_component.h"
 
 #ifdef USE_BINARY_SENSOR
 #include "esphome/components/binary_sensor/binary_sensor.h"
@@ -66,7 +65,6 @@ class ESP32ImprovComponent : public Component, public BLEServiceComponent {
   uint32_t wifi_timeout_{};
 
   std::vector<uint8_t> incoming_data_;
-  wifi::WiFiAP connecting_sta_;
 
   BLEService *service_ = nullptr;
   BLECharacteristic *status_;

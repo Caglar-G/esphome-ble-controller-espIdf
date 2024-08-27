@@ -132,6 +132,7 @@ void ESP32ImprovComponent::loop() {
     }
     case improv::STATE_PROVISIONING: {
       this->set_status_indicator_state_((now % 200) < 100);
+      /*
       if (wifi::global_wifi_component->is_connected()) {
         wifi::global_wifi_component->save_wifi_sta(this->connecting_sta_.get_ssid(),
                                                    this->connecting_sta_.get_password());
@@ -152,7 +153,7 @@ void ESP32ImprovComponent::loop() {
         std::vector<uint8_t> data = improv::build_rpc_response(improv::WIFI_SETTINGS, urls);
         this->send_response_(data);
         this->stop();
-      }
+      }*/
       break;
     }
     case improv::STATE_PROVISIONED: {
@@ -281,16 +282,19 @@ void ESP32ImprovComponent::process_incoming_data_() {
         this->incoming_data_.clear();
         break;
       case improv::WIFI_SETTINGS: {
+        /*
         if (this->state_ != improv::STATE_AUTHORIZED) {
           ESP_LOGW(TAG, "Settings received, but not authorized");
           this->set_error_(improv::ERROR_NOT_AUTHORIZED);
           this->incoming_data_.clear();
           return;
         }
+        /*
         wifi::WiFiAP sta{};
         sta.set_ssid(command.ssid);
         sta.set_password(command.password);
-        this->connecting_sta_ = sta;
+        this->connecting_sta_ = sta;*/
+        /*
 
         wifi::global_wifi_component->set_sta(sta);
         wifi::global_wifi_component->start_connecting(sta, false);
@@ -300,7 +304,7 @@ void ESP32ImprovComponent::process_incoming_data_() {
 
         auto f = std::bind(&ESP32ImprovComponent::on_wifi_connect_timeout_, this);
         this->set_timeout("wifi-connect-timeout", 30000, f);
-        this->incoming_data_.clear();
+        this->incoming_data_.clear();*/
         break;
       }
       case improv::IDENTIFY:
@@ -328,7 +332,7 @@ void ESP32ImprovComponent::on_wifi_connect_timeout_() {
     this->authorized_start_ = millis();
 #endif
   ESP_LOGW(TAG, "Timed out trying to connect to given WiFi network");
-  wifi::global_wifi_component->clear_sta();
+  //wifi::global_wifi_component->clear_sta();
 }
 
 void ESP32ImprovComponent::on_client_disconnect() { this->set_error_(improv::ERROR_NONE); };
