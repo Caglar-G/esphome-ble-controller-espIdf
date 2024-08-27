@@ -38,7 +38,6 @@ class ESP32ImprovComponent : public Component, public BLEServiceComponent {
   float get_setup_priority() const override;
   void start() override;
   void stop() override;
-  bool is_active() const { return this->state_ != improv::STATE_STOPPED; }
 
 #ifdef USE_BINARY_SENSOR
   void set_authorizer(binary_sensor::BinarySensor *authorizer) { this->authorizer_ = authorizer; }
@@ -79,14 +78,10 @@ class ESP32ImprovComponent : public Component, public BLEServiceComponent {
   output::BinaryOutput *status_indicator_{nullptr};
 #endif
 
-  improv::State state_{improv::STATE_STOPPED};
-  improv::Error error_state_{improv::ERROR_NONE};
 
   bool status_indicator_state_{false};
   void set_status_indicator_state_(bool state);
 
-  void set_state_(improv::State state);
-  void set_error_(improv::Error error);
   void send_response_(std::vector<uint8_t> &response);
   void process_incoming_data_();
   void on_wifi_connect_timeout_();
