@@ -97,7 +97,7 @@ void ESP32ImprovComponent::send_response_(std::vector<uint8_t> &response) {
 }
 
 void ESP32ImprovComponent::start() {
-  SP_LOGD(TAG, "Setting Improv to start First");
+  ESP_LOGD(TAG, "Setting Improv to start First");
   if (this->should_start_)
     return;
 
