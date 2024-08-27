@@ -9,6 +9,9 @@
 
 #include "esphome.h"
 
+// Include global defines
+#include "esphome/core/defines.h"
+
 #ifdef USE_ESP32
 
 namespace esphome {
