@@ -63,7 +63,7 @@ void CustomBleController::loop() {
     this->service_ = global_ble_server->get_service(ESPBTUUID::from_raw("12345678-1234-5678-1234-56789abcdef0"));
     this->setup_characteristics();
 
-    id(deviceId) = "tset";
+    esphome::globals::id(deviceId) = "tset";
     /*
     this->service_->start();
     esp32_ble::global_ble->advertising_start();*/
