@@ -5,6 +5,7 @@
 #include "esphome/core/application.h"
 #include "esphome/core/log.h"
 #include "esphome/components/globals/globals_component.h"
+#include "esphome/core/helpers.h"
 
 #ifdef USE_ESP32
 
