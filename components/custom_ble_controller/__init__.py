@@ -18,8 +18,6 @@ def to_code(config):
     pin = yield cg.gpio_pin_expression(config[CONF_PIN])
     cg.add(var.set_pin(pin))
 
-
-@cg.action
 def turn_on_action(var):
     return cg.call(var.turn_on())
 
