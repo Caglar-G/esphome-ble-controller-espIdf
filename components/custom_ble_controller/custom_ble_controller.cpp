@@ -57,6 +57,10 @@ void CustomBleController::setup_characteristics() {
   ESP_LOGD(TAG, "Improv service setup_characteristics");
 }
 
+void CustomBleController::setDeviceId(globals::GlobalsComponent<std:string>  *color_value){
+
+}
+
 void CustomBleController::loop() {
   if (!global_ble_server->is_running()) {
     this->incoming_data_.clear();
@@ -70,7 +74,7 @@ void CustomBleController::loop() {
     this->setup_characteristics();
 
     //esphome::globals::id(deviceId) = "tset";
-    deviceId->value() = "something";
+    //deviceId->value() = "something";
     /*
     this->service_->start();
     esp32_ble::global_ble->advertising_start();*/
