@@ -3,11 +3,17 @@
 #include "esphome/core/automation.h"
 #include "esphome/core/component.h"
 #include "esphome/core/gpio.h"
+#include "esphome/core/defines.h"
+#include "esphome/core/helpers.h"
+#include "esphome/core/preferences.h"
+
+#include "esphome/components/esp32_ble_server/ble_characteristic.h"
+#include "esphome/components/esp32_ble_server/ble_server.h"
 
 namespace esphome {
 namespace custom_ble_controller {
 
-class CustomBLEController : public Component {
+class CustomBLEController : public Component,  public BLEServiceComponent {
  public:
   void setup() override;
   void loop() override;
@@ -19,6 +25,14 @@ class CustomBLEController : public Component {
  protected:
   GPIOPin *pin_;
   bool led_state_{false};
+
+  BLEService *service_ = nullptr;
+  BLECharacteristic *status_;
+  BLECharacteristic *error_;
+  BLECharacteristic *rpc_;
+  BLECharacteristic *rpc_response_;
+  BLECharacteristic *capabilities_;
+
 };
 
 extern CustomBLEController *global_bleController;

@@ -14,6 +14,12 @@
     }
 
     void CustomBLEController::loop() {
+      if (!global_ble_server->is_running()) {
+        /*
+        this->state_ = improv::STATE_STOPPED;
+        this->incoming_data_.clear();*/
+        return;
+      }
       // Buraya istenirse LED kontrol kodları eklenebilir
     }
 
