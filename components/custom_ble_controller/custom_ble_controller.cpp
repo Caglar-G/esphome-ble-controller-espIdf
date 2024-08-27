@@ -46,7 +46,7 @@ void ESP32ImprovComponent::loop() {
   }
   else{
     if (this->service_->is_created()) {
-      ESP_LOGD(TAG, "Service is_created!");
+      //ESP_LOGD(TAG, "Service is_created!");
       if (this->service_->is_running()) {
           ESP_LOGD(TAG, "Service is_running!");
           /*
@@ -56,7 +56,7 @@ void ESP32ImprovComponent::loop() {
           this->set_error_(improv::ERROR_NONE);
           ESP_LOGD(TAG, "Service started!");*/
         } else {
-          //this->service_->start();
+          this->service_->start();
         }
       }
   }
@@ -97,12 +97,12 @@ void ESP32ImprovComponent::send_response_(std::vector<uint8_t> &response) {
 }
 
 void ESP32ImprovComponent::start() {
-  /*
-  if (this->should_start_ || this->state_ != improv::STATE_STOPPED)
+  SP_LOGD(TAG, "Setting Improv to start First");
+  if (this->should_start_)
     return;
 
   ESP_LOGD(TAG, "Setting Improv to start");
-  this->should_start_ = true;*/
+  this->should_start_ = true;
 }
 
 void ESP32ImprovComponent::stop() {
