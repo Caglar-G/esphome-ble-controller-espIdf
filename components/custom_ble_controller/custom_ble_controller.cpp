@@ -8,7 +8,7 @@
 #ifdef USE_ESP32
 
 namespace esphome {
-namespace esp32_improv {
+namespace custom_ble_controller {
 
 static const uint16_t DEVICE_INFORMATION_SERVICE_UUID = 0x180B;
 static const uint16_t MODEL_UUID = 0x2A25;
@@ -16,13 +16,13 @@ static const uint16_t MODEL_UUID = 0x2A25;
 static const char *const TAG = "esp32_improv.component";
 static const char *const ESPHOME_MY_LINK = "https://my.home-assistant.io/redirect/config_flow_start?domain=esphome";
 
-ESP32ImprovComponent::ESP32ImprovComponent() { global_improv_component = this; }
+CustomBleController::CustomBleController() { global_improv_component = this; }
 
-void ESP32ImprovComponent::setup() {
+void CustomBleController::setup() {
 
 }
 
-void ESP32ImprovComponent::setup_characteristics() {
+void CustomBleController::setup_characteristics() {
   this->status_ = this->service_->create_characteristic(
       ESPBTUUID::from_raw("87654321-4321-6789-4321-fedcba987654"), BLECharacteristic::PROPERTY_WRITE);
 
@@ -49,7 +49,7 @@ void ESP32ImprovComponent::setup_characteristics() {
   ESP_LOGD(TAG, "Improv service setup_characteristics");
 }
 
-void ESP32ImprovComponent::loop() {
+void CustomBleController::loop() {
   if (!global_ble_server->is_running()) {
     this->incoming_data_.clear();
     return;
@@ -83,7 +83,7 @@ void ESP32ImprovComponent::loop() {
 
 }
 
-void ESP32ImprovComponent::set_status_indicator_state_(bool state) {
+void CustomBleController::set_status_indicator_state_(bool state) {
 #ifdef USE_OUTPUT
   if (this->status_indicator_ == nullptr)
     return;
@@ -98,7 +98,7 @@ void ESP32ImprovComponent::set_status_indicator_state_(bool state) {
 #endif
 }
 
-bool ESP32ImprovComponent::check_identify_() {
+bool CustomBleController::check_identify_() {
   uint32_t now = millis();
 
   bool identify = this->identify_start_ != 0 && now - this->identify_start_ <= this->identify_duration_;
@@ -112,11 +112,11 @@ bool ESP32ImprovComponent::check_identify_() {
 
 
 
-void ESP32ImprovComponent::send_response_(std::vector<uint8_t> &response) {
+void CustomBleController::send_response_(std::vector<uint8_t> &response) {
   
 }
 
-void ESP32ImprovComponent::start() {
+void CustomBleController::start() {
   ESP_LOGD(TAG, "Setting Improv to start First");
   if (this->should_start_)
     return;
@@ -125,7 +125,7 @@ void ESP32ImprovComponent::start() {
   this->should_start_ = true;
 }
 
-void ESP32ImprovComponent::stop() {
+void CustomBleController::stop() {
   /*
   this->should_start_ = false;
   this->set_timeout("end-service", 1000, [this] {
@@ -136,9 +136,9 @@ void ESP32ImprovComponent::stop() {
   });*/
 }
 
-float ESP32ImprovComponent::get_setup_priority() const { return setup_priority::AFTER_BLUETOOTH; }
+float CustomBleController::get_setup_priority() const { return setup_priority::AFTER_BLUETOOTH; }
 
-void ESP32ImprovComponent::dump_config() {
+void CustomBleController::dump_config() {
   ESP_LOGCONFIG(TAG, "ESP32 Improv:");
 #ifdef USE_BINARY_SENSOR
   LOG_BINARY_SENSOR("  ", "Authorizer", this->authorizer_);
@@ -148,17 +148,17 @@ void ESP32ImprovComponent::dump_config() {
 #endif
 }
 
-void ESP32ImprovComponent::process_incoming_data_() {
+void CustomBleController::process_incoming_data_() {
   
 }
 
-void ESP32ImprovComponent::on_wifi_connect_timeout_() {
+void CustomBleController::on_wifi_connect_timeout_() {
  
 }
 
-void ESP32ImprovComponent::on_client_disconnect() {  };
+void CustomBleController::on_client_disconnect() {  };
 
-ESP32ImprovComponent *global_improv_component = nullptr;  // NOLINT(cppcoreguidelines-avoid-non-const-global-variables)
+CustomBleController *global_improv_component = nullptr;  // NOLINT(cppcoreguidelines-avoid-non-const-global-variables)
 
 }  // namespace esp32_improv
 }  // namespace esphome

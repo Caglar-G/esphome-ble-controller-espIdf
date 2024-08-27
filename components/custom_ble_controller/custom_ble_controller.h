@@ -22,13 +22,13 @@
 
 
 namespace esphome {
-namespace esp32_improv {
+namespace custom_ble_controller {
 
 using namespace esp32_ble_server;
 
-class ESP32ImprovComponent : public Component, public BLEServiceComponent {
+class CustomBleController : public Component, public BLEServiceComponent {
  public:
-  ESP32ImprovComponent();
+  CustomBleController();
   void dump_config() override;
   void loop() override;
   void setup() override;
@@ -89,7 +89,7 @@ class ESP32ImprovComponent : public Component, public BLEServiceComponent {
 };
 
 // NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
-extern ESP32ImprovComponent *global_improv_component;
+extern CustomBleController *global_improv_component;
 
 }  // namespace esp32_improv
 }  // namespace esphome
