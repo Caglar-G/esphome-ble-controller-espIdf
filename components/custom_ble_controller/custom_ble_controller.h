@@ -7,6 +7,7 @@
 #include "esphome/core/helpers.h"
 #include "esphome/core/preferences.h"
 
+
 #include "esphome/components/esp32_ble_server/ble_characteristic.h"
 #include "esphome/components/esp32_ble_server/ble_server.h"
 
