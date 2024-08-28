@@ -10,6 +10,8 @@
 #include "esphome/components/globals/globals_component.h"
 #include "esphome/components/switch/switch.h"
 #include "esphome/components/gpio/switch/gpio_switch.h"
+#include "esphome/components/mqtt/mqtt_switch.h"
+
 
 #ifdef USE_BINARY_SENSOR
 #include "esphome/components/binary_sensor/binary_sensor.h"
@@ -66,9 +68,11 @@ class CustomBleController : public Component, public BLEServiceComponent {
   bool should_start_{false};
   bool setup_complete_{false};
 
-
   globals::GlobalsComponent<std::string>  *deviceId_;
   esphome::gpio::GPIOSwitch *test_switch_{nullptr};
+
+  mqtt::MQTTSwitchComponent  *testmqtt;
+
 
   uint32_t identify_start_{0};
   uint32_t identify_duration_;
