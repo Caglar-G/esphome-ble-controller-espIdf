@@ -1,5 +1,5 @@
 import esphome.codegen as cg
-from esphome.components import binary_sensor, esp32_ble_server, output, switch
+from esphome.components import binary_sensor, esp32_ble_server, output, switch, gpio
 import esphome.config_validation as cv
 from esphome.const import CONF_ID
 
