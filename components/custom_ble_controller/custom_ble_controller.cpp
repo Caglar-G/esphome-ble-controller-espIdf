@@ -33,7 +33,7 @@ CustomBleController::CustomBleController() { global_improv_component = this; }
 void CustomBleController::setup() {
 
 
-  ESP_LOGD(TAG, "DeviceId: %s", id(global_forced_addr));
+  ESP_LOGD(TAG, "DeviceId: %s", id(global_forced_addr).c_str());
 
 }
 
@@ -67,7 +67,7 @@ void CustomBleController::setup_characteristics() {
   BLEDescriptor *status_descriptor = new BLE2902();
   this->status_->add_descriptor(status_descriptor);
   ESP_LOGD(TAG, "Improv service setup_characteristics");
-  ESP_LOGD(TAG, "DeviceId: %s", id(global_forced_addr));
+  ESP_LOGD(TAG, "DeviceId: %s", id(global_forced_addr).c_str());
 
   
 }
