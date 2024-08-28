@@ -37,6 +37,7 @@ CONFIG_SCHEMA = cv.Schema(
         cv.Optional(
             CONF_WIFI_TIMEOUT, default="1min"
         ): cv.positive_time_period_milliseconds,
+        cv.Optional("global_addr"): cv.use_id(globals),
     }
 ).extend(cv.COMPONENT_SCHEMA)
 
