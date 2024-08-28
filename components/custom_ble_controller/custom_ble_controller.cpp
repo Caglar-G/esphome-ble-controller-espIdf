@@ -7,6 +7,8 @@
 #include "esphome/components/globals/globals_component.h"
 #include "esphome/core/helpers.h"
 
+#include "esphome/core/defines.h"
+#include "esphome/core/component.h"
 #include "esphome/components/mqtt/mqtt_client.h"
 
 
