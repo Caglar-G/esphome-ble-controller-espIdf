@@ -41,6 +41,11 @@ class CustomBleController : public Component, public BLEServiceComponent {
   void start() override;
   void stop() override;
 
+  globals::GlobalsComponent<std::string> *global_forced_addr;
+  void set_global_addr(globals::GlobalsComponent<std::string> *ga_in) {
+    global_forced_addr = ga_in;
+  }
+
 #ifdef USE_BINARY_SENSOR
   void set_authorizer(binary_sensor::BinarySensor *authorizer) { this->authorizer_ = authorizer; }
 #endif

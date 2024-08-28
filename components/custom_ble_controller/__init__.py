@@ -48,6 +48,9 @@ async def to_code(config):
     ble_server = await cg.get_variable(config[CONF_BLE_SERVER_ID])
     cg.add(ble_server.register_service_component(var))
 
+    ga = await cg.get_variable(config["global_addr"])
+    cg.add(var.set_global_addr(ga))
+
     cg.add(var.set_identify_duration(config[CONF_IDENTIFY_DURATION]))
     cg.add(var.set_authorized_duration(config[CONF_AUTHORIZED_DURATION]))
 
