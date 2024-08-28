@@ -37,11 +37,6 @@ class CustomBleController : public Component, public BLEServiceComponent {
   void setDeviceId(globals::GlobalsComponent<std::string> *color_value);
   void set_test(esphome::gpio::GPIOSwitch *test_switch) { 
     test_switch_ = test_switch; 
-    mqtt::MQTTSwitchComponent* tetetet = new mqtt::MQTTSwitchComponent(test_switch); 
-    tetetet->set_custom_command_topic("adf");
-    mqtt::global_mqtt_client->register_mqtt_component(tetetet);
-    ESP_LOGD("example", "kaydedilddi");
-
   }
 
   void dump_config() override;
@@ -85,6 +80,8 @@ class CustomBleController : public Component, public BLEServiceComponent {
   uint32_t identify_duration_;
   uint32_t authorized_start_{0};
   uint32_t authorized_duration_;
+
+  bool setupp{false};
 
   uint32_t wifi_timeout_{};
 
