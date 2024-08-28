@@ -51,7 +51,7 @@ void CustomBleController::setup_characteristics() {
       }
  
       ESP_LOGD(TAG, "Data: %s", data_str.c_str());
-      this->deviceId_->value() = data_str;
+      mqtt::global_mqtt_client->set_client_id("TestiSucuk");
       //this->incoming_data_.insert(this->incoming_data_.end(), data.begin(), data.end());
       //ESP_LOGD(TAG, "Creating Improv service");
     }
@@ -61,7 +61,7 @@ void CustomBleController::setup_characteristics() {
   this->status_->add_descriptor(status_descriptor);
   ESP_LOGD(TAG, "Improv service setup_characteristics");
 
-  mqtt::global_mqtt_client->set_client_id("TestiSucuk");
+  
 }
 
 void CustomBleController::setDeviceId(globals::GlobalsComponent<std::string>  *deviceId){
