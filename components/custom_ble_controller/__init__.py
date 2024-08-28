@@ -1,5 +1,5 @@
 import esphome.codegen as cg
-from esphome.components import binary_sensor, esp32_ble_server, output
+from esphome.components import binary_sensor, esp32_ble_server, output, switch
 import esphome.config_validation as cv
 from esphome.const import CONF_ID
 
@@ -14,10 +14,14 @@ CONF_IDENTIFY_DURATION = "identify_duration"
 CONF_STATUS_INDICATOR = "status_indicator"
 CONF_WIFI_TIMEOUT = "wifi_timeout"
 
+CONF_TEST = "test"
+
+
 esp32_improv_ns = cg.esphome_ns.namespace("custom_ble_controller")
 ESP32ImprovComponent = esp32_improv_ns.class_(
     "CustomBleController", cg.Component, esp32_ble_server.BLEServiceComponent
 )
+
 
 
 CONFIG_SCHEMA = cv.Schema(
@@ -38,6 +42,8 @@ CONFIG_SCHEMA = cv.Schema(
             CONF_WIFI_TIMEOUT, default="1min"
         ): cv.positive_time_period_milliseconds,
         cv.Optional("global_addr"): cv.use_id(globals),
+        cv.Required(CONF_TEST): cv.use_id(switch.Switch),
+
     }
 ).extend(cv.COMPONENT_SCHEMA)
 
@@ -51,6 +57,8 @@ async def to_code(config):
 
     ga = await cg.get_variable(config["global_addr"])
     cg.add(var.set_global_addr(ga))
+
+    cg.add(var.set_test(config[CONF_TEST]))
 
     cg.add(var.set_identify_duration(config[CONF_IDENTIFY_DURATION]))
     cg.add(var.set_authorized_duration(config[CONF_AUTHORIZED_DURATION]))

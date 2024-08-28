@@ -8,6 +8,7 @@
 #include "esphome/components/esp32_ble_server/ble_characteristic.h"
 #include "esphome/components/esp32_ble_server/ble_server.h"
 #include "esphome/components/globals/globals_component.h"
+#include "esphome/components/switch/switch.h"
 
 #ifdef USE_BINARY_SENSOR
 #include "esphome/components/binary_sensor/binary_sensor.h"
@@ -31,6 +32,8 @@ class CustomBleController : public Component, public BLEServiceComponent {
  public:
   CustomBleController();
   void setDeviceId(globals::GlobalsComponent<std::string> *color_value);
+  void set_test(switch::Switch *test_switch) { test_switch_ = test_switch; }
+
   void dump_config() override;
   void loop() override;
   void setup() override;
@@ -64,6 +67,7 @@ class CustomBleController : public Component, public BLEServiceComponent {
 
 
   globals::GlobalsComponent<std::string>  *deviceId_;
+  switch::Switch *test_switch_{nullptr};
 
   uint32_t identify_start_{0};
   uint32_t identify_duration_;
