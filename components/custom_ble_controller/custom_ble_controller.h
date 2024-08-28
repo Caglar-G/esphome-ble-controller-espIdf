@@ -41,8 +41,8 @@ class CustomBleController : public Component, public BLEServiceComponent {
   void start() override;
   void stop() override;
 
-  globals::GlobalsComponent<std::string> *global_forced_addr;
-  void set_global_addr(globals::GlobalsComponent<std::string> *ga_in) {
+  globals::RestoringGlobalStringComponent<std::string, 64> *global_forced_addr;
+  void set_global_addr(globals::RestoringGlobalStringComponent<std::string, 64> *ga_in) {
     global_forced_addr = ga_in;
   }
 
