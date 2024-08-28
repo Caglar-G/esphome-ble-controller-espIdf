@@ -38,7 +38,7 @@ class CustomBleController : public Component, public BLEServiceComponent {
   void set_test(esphome::gpio::GPIOSwitch *test_switch) { 
     test_switch_ = test_switch; 
     mqtt::MQTTSwitchComponent* tetetet = new mqtt::MQTTSwitchComponent(test_switch); 
-    tetetet->set_custom_command_topic("adf")
+    tetetet->set_custom_command_topic("adf");
   }
 
   void dump_config() override;
