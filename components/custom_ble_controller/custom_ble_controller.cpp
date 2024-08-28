@@ -84,7 +84,7 @@ void CustomBleController::loop() {
     tetetet->set_custom_command_topic("adf");
     mqtt::global_mqtt_client->register_mqtt_component(tetetet);
     ESP_LOGD("example", "kaydedilddi");
-    this->setupp = true
+    this->setupp = true;
   }
   if (!global_ble_server->is_running()) {
     this->incoming_data_.clear();
