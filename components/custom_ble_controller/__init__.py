@@ -58,7 +58,8 @@ async def to_code(config):
     ga = await cg.get_variable(config["global_addr"])
     cg.add(var.set_global_addr(ga))
 
-    cg.add(var.set_test(config[CONF_TEST]))
+    test_switch = await cg.get_variable(config[CONF_TEST])
+    cg.add(var.set_test(test_switch))
 
     cg.add(var.set_identify_duration(config[CONF_IDENTIFY_DURATION]))
     cg.add(var.set_authorized_duration(config[CONF_AUTHORIZED_DURATION]))
