@@ -39,6 +39,8 @@ class CustomBleController : public Component, public BLEServiceComponent {
     test_switch_ = test_switch; 
     mqtt::MQTTSwitchComponent* tetetet = new mqtt::MQTTSwitchComponent(test_switch); 
     tetetet->set_custom_command_topic("adf");
+    global_mqtt_client->register_mqtt_component(&tetetet);
+
   }
 
   void dump_config() override;
