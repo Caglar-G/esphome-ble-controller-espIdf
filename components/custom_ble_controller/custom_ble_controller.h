@@ -9,7 +9,7 @@
 #include "esphome/components/esp32_ble_server/ble_server.h"
 #include "esphome/components/globals/globals_component.h"
 #include "esphome/components/switch/switch.h"
-#include "esphome/components/switch/gpio_switch.h" 
+#include "esphome/components/gpio/switch/gpio_switch.h
 
 #ifdef USE_BINARY_SENSOR
 #include "esphome/components/binary_sensor/binary_sensor.h"
