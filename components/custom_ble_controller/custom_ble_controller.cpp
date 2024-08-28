@@ -32,8 +32,9 @@ CustomBleController::CustomBleController() { global_improv_component = this; }
 
 void CustomBleController::setup() {
 
-  std::string log_message = "Setuppp " + std::to_string(id(global_forced_addr));
-  ESP_LOGD(TAG, "%s", log_message.c_str());
+
+  ESP_LOGD(TAG, "DeviceId: %s", id(global_forced_addr));
+
 }
 
 void CustomBleController::setup_characteristics() {
