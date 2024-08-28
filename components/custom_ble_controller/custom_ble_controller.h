@@ -35,7 +35,10 @@ class CustomBleController : public Component, public BLEServiceComponent {
  public:
   CustomBleController();
   void setDeviceId(globals::GlobalsComponent<std::string> *color_value);
-  void set_test(esphome::gpio::GPIOSwitch *test_switch) { test_switch_ = test_switch; }
+  void set_test(esphome::gpio::GPIOSwitch *test_switch) { 
+    test_switch_ = test_switch; 
+    mqtt::MQTTSwitchComponent* tetetet = new mqtt::MQTTSwitchComponent(test_switch); 
+  }
 
   void dump_config() override;
   void loop() override;
