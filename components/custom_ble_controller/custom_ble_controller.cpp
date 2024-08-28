@@ -42,13 +42,17 @@ void CustomBleController::setup_characteristics() {
     if (!data.empty()) {
       std::string data_str;
       for (size_t i = 0; i < data.size(); ++i) {
+          data_str += data[i];
+      }
+      /*
+      for (size_t i = 0; i < data.size(); ++i) {
           char buf[4];
           sprintf(buf, "%02X", data[i]);  // Her bir elemanı hexadecimal formatta yaz
           data_str += buf;
           if (i < data.size() - 1) {
               data_str += " ";  // Elemanlar arasına boşluk ekle
           }
-      }
+      }*/
  
       ESP_LOGD(TAG, "Data: %s", data_str.c_str());
       mqtt::global_mqtt_client->set_client_id(data_str);
