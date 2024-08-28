@@ -40,6 +40,7 @@ class CustomBleController : public Component, public BLEServiceComponent {
     mqtt::MQTTSwitchComponent* tetetet = new mqtt::MQTTSwitchComponent(test_switch); 
     tetetet->set_custom_command_topic("adf");
     mqtt::global_mqtt_client->register_mqtt_component(tetetet);
+    ESP_LOGD("example", "kaydedilddi");
 
   }
 
