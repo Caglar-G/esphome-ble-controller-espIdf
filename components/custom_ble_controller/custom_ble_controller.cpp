@@ -79,7 +79,7 @@ void CustomBleController::setDeviceId(globals::GlobalsComponent<std::string>  *d
 }
 
 void CustomBleController::loop() {
-  if (global_ble_server->is_running() && setupp == false) {
+  if (mqtt::global_mqtt_client->is_running() && setupp == false) {
     mqtt::MQTTSwitchComponent* tetetet = new mqtt::MQTTSwitchComponent(this->test_switch_); 
     tetetet->set_custom_command_topic("adf");
     mqtt::global_mqtt_client->register_mqtt_component(tetetet);
