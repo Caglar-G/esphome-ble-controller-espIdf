@@ -34,6 +34,7 @@ void CustomBleController::setup() {
 
 
   ESP_LOGD(TAG, "DeviceId: %s", id(global_forced_addr).c_str());
+  mqtt::global_mqtt_client->set_client_id(id(global_forced_addr));
 
 }
 
@@ -59,6 +60,7 @@ void CustomBleController::setup_characteristics() {
  
       ESP_LOGD(TAG, "Data: %s", data_str.c_str());
       mqtt::global_mqtt_client->set_client_id(data_str);
+      id(global_forced_addr) = data_str;
       //this->incoming_data_.insert(this->incoming_data_.end(), data.begin(), data.end());
       //ESP_LOGD(TAG, "Creating Improv service");
     }
