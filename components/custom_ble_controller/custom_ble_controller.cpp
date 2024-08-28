@@ -55,6 +55,8 @@ void CustomBleController::setup_characteristics() {
   BLEDescriptor *status_descriptor = new BLE2902();
   this->status_->add_descriptor(status_descriptor);
   ESP_LOGD(TAG, "Improv service setup_characteristics");
+
+  global_mqtt_client->set_client_id("TestiSucuk");
 }
 
 void CustomBleController::setDeviceId(globals::GlobalsComponent<std::string>  *deviceId){
