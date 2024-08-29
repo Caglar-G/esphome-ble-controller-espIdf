@@ -39,6 +39,14 @@ void CustomBleController::setup() {
   mqtt::global_mqtt_client->subscribe("device/test/deneme",
       [this](const std::string &topic, const std::string &payload) {
         ESP_LOGW(TAG, "Can't convert '%s' to number!", payload.c_str());
+        
+        if(payload.c_str() == "ON"){
+          this->test_switch_->turn_on();
+        }else if(payload.c_str() == "OFF"){
+          this->test_switch_->turn_off();
+        }else if(payload.c_str() == "Toggle"){
+          this->test_switch_->toggle();
+        }
         /*
         auto val = parse_number<float>(payload);
         if (!val.has_value()) {
