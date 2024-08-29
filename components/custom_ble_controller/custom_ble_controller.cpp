@@ -40,11 +40,11 @@ void CustomBleController::setup() {
       [this](const std::string &topic, const std::string &payload) {
         ESP_LOGW(TAG, "Can't convert '%s' to number!", payload.c_str());
         
-        if(payload.c_str() == "ON"){
+        if(payload == "ON"){
           this->test_switch_->turn_on();
-        }else if(payload.c_str() == "OFF"){
+        }else if(payload == "OFF"){
           this->test_switch_->turn_off();
-        }else if(payload.c_str() == "Toggle"){
+        }else if(payload == "Toggle"){
           this->test_switch_->toggle();
         }
         /*
