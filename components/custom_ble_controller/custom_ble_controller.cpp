@@ -36,6 +36,15 @@ void CustomBleController::setup() {
   ESP_LOGD(TAG, "DeviceId: %s", id(global_forced_addr).c_str());
   mqtt::global_mqtt_client->set_client_id(id(global_forced_addr));
 
+  this->test_switch_->add_on_state_callback([this](bool state) {
+      // Switch durumu değiştiğinde bu kod bloğu çalışır
+      if (state) {
+        ESP_LOGD("custom_switch", "Switch ON-TTTTT");
+      } else {
+        ESP_LOGD("custom_switch", "Switch OFF-TTTT");
+      }
+   });
+
   mqtt::global_mqtt_client->subscribe("device/test/deneme",
       [this](const std::string &topic, const std::string &payload) {
         ESP_LOGW(TAG, "Can't convert '%s' to number!", payload.c_str());
@@ -102,6 +111,7 @@ void CustomBleController::setDeviceId(globals::GlobalsComponent<std::string>  *d
 
 void CustomBleController::loop() {
   
+  /*
   if (mqtt::global_mqtt_client->is_connected() && setupp == false) {
     mqtt::MQTTSwitchComponent* tetetet = new mqtt::MQTTSwitchComponent(this->test_switch_); 
 
@@ -117,7 +127,7 @@ void CustomBleController::loop() {
     mqtt::global_mqtt_client->check_connected();
     ESP_LOGD("example", "kaydedilddi");
     this->setupp = true;
-  }
+  }*/
   if (!global_ble_server->is_running()) {
     this->incoming_data_.clear();
     return;
