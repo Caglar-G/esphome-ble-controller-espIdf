@@ -45,7 +45,7 @@ void CustomBleController::setup() {
       }
    });
 
-  mqtt::global_mqtt_client->subscribe("device/test/deneme",
+  mqtt::global_mqtt_client->subscribe("device/"+id(global_forced_addr)+"/deneme",
       [this](const std::string &topic, const std::string &payload) {
         ESP_LOGW(TAG, "Can't convert '%s' to number!", payload.c_str());
         
