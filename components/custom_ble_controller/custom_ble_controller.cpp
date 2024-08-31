@@ -101,14 +101,15 @@ void CustomBleController::setDeviceId(globals::GlobalsComponent<std::string>  *d
 }
 
 void CustomBleController::loop() {
-  /*
+  
   if (mqtt::global_mqtt_client->is_connected() && setupp == false) {
     mqtt::MQTTSwitchComponent* tetetet = new mqtt::MQTTSwitchComponent(this->test_switch_); 
     tetetet->set_custom_command_topic("adf");
     mqtt::global_mqtt_client->register_mqtt_component(tetetet);
+    mqtt::global_mqtt_client->check_connected();
     ESP_LOGD("example", "kaydedilddi");
     this->setupp = true;
-  }*/
+  }
   if (!global_ble_server->is_running()) {
     this->incoming_data_.clear();
     return;
