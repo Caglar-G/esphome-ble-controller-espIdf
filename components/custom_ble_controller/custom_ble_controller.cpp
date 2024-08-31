@@ -104,7 +104,15 @@ void CustomBleController::loop() {
   
   if (mqtt::global_mqtt_client->is_connected() && setupp == false) {
     mqtt::MQTTSwitchComponent* tetetet = new mqtt::MQTTSwitchComponent(this->test_switch_); 
-    tetetet->set_custom_command_topic("adf");
+
+    tetetet->set_qos(0)
+    tetetet->set_retain(false)    
+    tetetet->set_custom_state_topic("tset2")
+    tetetet->set_custom_command_topic("test1");
+    tetetet->set_command_retain(false)
+   
+    tetetet->disable_availability();
+
     mqtt::global_mqtt_client->register_mqtt_component(tetetet);
     mqtt::global_mqtt_client->check_connected();
     ESP_LOGD("example", "kaydedilddi");
